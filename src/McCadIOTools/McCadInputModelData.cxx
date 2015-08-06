@@ -7,6 +7,8 @@
 
 #include "../McCadTool/McCadConvertConfig.hxx"
 
+#include <unistd.h>
+
 McCadInputModelData::McCadInputModelData()
 {
     m_listModelData = new TopTools_HSequenceOfShape();
