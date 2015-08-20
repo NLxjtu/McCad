@@ -5,9 +5,6 @@
 #include <AIS_ListOfInteractive.hxx>
 #include <AIS_ListIteratorOfListOfInteractive.hxx>
 
-#include <QMcCad_Application.h>
-#include <QMcCadGeomeTree_TreeWidget.hxx>
-
 McCadViewTool_DisplaySelectedOnly::McCadViewTool_DisplaySelectedOnly(const Handle(McCadCom_CasDocument)& theDoc,const Handle(McCadCom_CasView)& theView,const McCadTool_State theState,const Standard_Boolean theUndoState,const Standard_Boolean theRedoState)
 {
 	myDoc = theDoc;
@@ -29,46 +26,21 @@ Standard_Boolean McCadViewTool_DisplaySelectedOnly::IsNull()
 
  void McCadViewTool_DisplaySelectedOnly::Execute()
 {
-     Handle(AIS_InteractiveContext) theContext = myDoc->GetContext();
-//	 AIS_ListOfInteractive ioList;
-
-//	 theIC->DisplayedObjects(ioList);
-//	 AIS_ListIteratorOfListOfInteractive it(ioList);
-
-//	 for(; it.More(); it.Next())
-//	 {
-//         if(!theIC->IsSelected(it.Value()))
-//             theIC->Erase(it.Value(),0,1);
-//	 }
-
-//	 theIC->UpdateCurrentViewer();
-
-//	 Done();
-
+	 Handle(AIS_InteractiveContext) theIC = myDoc->GetContext();
      AIS_ListOfInteractive ioList;
 
-     theContext->DisplayedObjects(ioList);
+	 theIC->DisplayedObjects(ioList);
      AIS_ListIteratorOfListOfInteractive it(ioList);
 
      for(; it.More(); it.Next())
      {
-         if(!theContext->IsHilighted(it.Value()))
-         {
-             theContext->Erase(it.Value(),0,1);
-             QMcCad_Application::GetAppMainWin()->Mcout("Noeee5");
-             Handle(AIS_Shape) aShape = Handle(AIS_Shape)::DownCast(it.Value());
-              TopoDS_Shape theShp = aShape->Shape();
+		 if(!theIC->IsSelected(it.Value()))
+//qiu			 theIC->Erase(it.Value(),0,1);
+             theIC->Erase(it.Value(),0);
+	 }
 
-              TopAbs::Print(theShp.ShapeType(),cout);cout << endl;
+	 theIC->UpdateCurrentViewer();
 
-              if(theShp.ShapeType() == TopAbs_FACE)
-              {
-                  QMcCad_Application::GetAppMainWin()->Mcout("No5555");
-              }
-         }
-     }
-
-     theContext->UpdateCurrentViewer();\
      Done();
 }
 

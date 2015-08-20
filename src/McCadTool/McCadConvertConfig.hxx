@@ -98,6 +98,28 @@ public:
 
     Standard_EXPORT static void SetMinMaxSmplPntNum(int iMinPnt,int iMaxPnt);
 
+    Standard_EXPORT static void SetWriteCollisionFile(const bool & bWriteCollisionFile){ m_bWriteCollisionFile = bWriteCollisionFile;};
+    Standard_EXPORT static void SetGenerateVoid(const bool & bVoidGenerate){ m_bVoidGenerate = bVoidGenerate;};
+
+    Standard_EXPORT static void SetTolerence(const double & dTolerance){ m_dTolerance = dTolerance;};
+    Standard_EXPORT static void SetAngleTolerance(const double & dAngleTolerance){ m_dAngleTolerance = dAngleTolerance;};
+    Standard_EXPORT static void SetMinIptSolidVod(const double & dMinIptSolidVol){ m_dMinIptSolidVol = dMinIptSolidVol;};
+    Standard_EXPORT static void SetMaxDiscLength(const double & dMaxDiscLength ){ m_dMaxDiscLength = dMaxDiscLength;};
+    Standard_EXPORT static void SetMinDecomFaceArea(const double & dMinDecomFaceArea){ m_dMinDecomFaceArea = dMinDecomFaceArea;};
+    Standard_EXPORT static void SetMinVoidVol(const double & dMinVoidVol ){ m_dMinVoidVol = dMinVoidVol;};
+
+    Standard_EXPORT static void SetVoidDecomposeDepth(const unsigned int & iVoidDecomposeDepth){ m_iVoidDecomposeDepth = iVoidDecomposeDepth;};
+    Standard_EXPORT static void SetInitCellNum(const unsigned int & iInitCellNum){ m_iInitCellNum = iInitCellNum;};
+    Standard_EXPORT static void SetInitSurfNum(const unsigned int & iInitSurfNum){ m_iInitSurfNum = iInitSurfNum;};
+    Standard_EXPORT static void SetXResolution(const unsigned int & iXResolution){ m_iXResolution = iXResolution;};
+    Standard_EXPORT static void SetYResolution(const unsigned int & iYResolution){ m_iYResolution = iYResolution;};
+    Standard_EXPORT static void SetRResolution(const unsigned int & iRResolution){ m_iRResolution = iRResolution;};
+    Standard_EXPORT static void SetMaxSmplPntNum(const unsigned int & iMaxSmplPntNum){ m_iMaxSmplPntNum = iMaxSmplPntNum;};
+    Standard_EXPORT static void SetMinSmplPntNum(const unsigned int & iMinSmplPntNum){ m_iMinSmplPntNum = iMinSmplPntNum;};
+
+    Standard_EXPORT static void SetInputFileName(const TCollection_AsciiString &strInputFileName){ m_strInputFileName = strInputFileName;};
+    Standard_EXPORT static void SetMatFile(const TCollection_AsciiString &strMatFile){ m_strMatFile = strMatFile ;};
+    Standard_EXPORT static void SetDirectory(const TCollection_AsciiString &strDirectory){ m_strDirectory = strDirectory;};
 };
 
 #endif // MCCADVOIDPRMT_HXX
