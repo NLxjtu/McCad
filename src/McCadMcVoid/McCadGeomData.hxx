@@ -32,10 +32,10 @@ public:
     McCadGeomData(Handle_TopTools_HSequenceOfShape & solid_list, Standard_Boolean bGenVoid);
     ~McCadGeomData();
 
-private:
+protected:
     McCadVoidCellManager * m_pManager;              /**< The manager object which data belong to */
 
-private:
+protected:
     Standard_Integer m_iNumSolid;                           /**< The number of convex solids */
 
     Handle(TopTools_HSequenceOfShape) m_listConvexSolid;    /**< The input convex solid after decomposition */
@@ -83,6 +83,10 @@ public:
     friend class McCadVoidCellManager;
     friend class McCadMcnpWriter;
     friend class McCadTripoliWriter;
+    friend class S_McCadMcnpWriter;
+    friend class S_McCadTripoliWriter;
+    friend class McCadGDMLWriter;
+    friend class S_McCadGDMLWriter;
 };
 
 #endif // MCCADGEOMDATA_HXX

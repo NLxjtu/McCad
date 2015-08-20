@@ -444,7 +444,7 @@ QAction* QMcCad_ActionFactory::CreateAction(McCadTool_TaskID theID,	QObject* aMa
 			break;
 
 		case McCadTool_ShowAll:
-            action = new QAction(QIcon(":images/viewall2.png"),tr("Show All"), myWin);
+			action = new QAction(QIcon(":images/viewall.png"),tr("Show All"), myWin);
 			connect(action, SIGNAL(triggered()), aMaster, SLOT(SlotShowAll()));
 			break;
 

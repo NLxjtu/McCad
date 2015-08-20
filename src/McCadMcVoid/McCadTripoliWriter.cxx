@@ -10,6 +10,7 @@
 #include "McCadGeomCylinder.hxx"
 #include "McCadGeomSphere.hxx"
 #include "McCadGeomCone.hxx"
+#include <math.h> //qiu
 
 #include "../McCadTool/McCadMathTool.hxx"
 
@@ -931,7 +932,7 @@ vector<Standard_Real> McCadTripoliWriter::GetSurfPrmt(IGeomFace *& pFace)
         prmt_list.push_back(pCon->GetApex().X());
         prmt_list.push_back(pCon->GetApex().Y());
         prmt_list.push_back(pCon->GetApex().Z());
-        prmt_list.push_back((pCon->GetSemiAngle()/M_PI)*180);
+        prmt_list.push_back((pCon->GetSemiAngle()/M_PI)*180.);
         return prmt_list;
     }
 

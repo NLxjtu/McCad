@@ -43,7 +43,8 @@ public:
     McCadVoidCellManager();
     ~McCadVoidCellManager();   
 
-private:
+//private:  //qiu
+protected:
 
     Standard_Boolean m_bHaveMaterial;       /**< If the material file is existed, set true, else set false */
     Standard_Boolean m_bGenerateVoid;       /**< The switch of void generation */

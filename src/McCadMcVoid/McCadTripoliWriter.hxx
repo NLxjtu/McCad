@@ -24,7 +24,8 @@ public:
     McCadTripoliWriter(Standard_Boolean bMat, Standard_Boolean bVoid);
     ~McCadTripoliWriter();
 
-private:
+//private: //qiu
+protected:
 
     Standard_Integer m_virtualCellNum;  /**< The initial number of virtual cell */
     map<TCollection_AsciiString,TCollection_AsciiString> m_mapSymb;
@@ -39,7 +40,8 @@ public:
     void PrintTrsfDesc(Standard_OStream& theStream);    /**< Print the transform card */
     void PrintMatCard(Standard_OStream& theStream);     /**< Print the material card */
 
-private:
+//private: //qiu
+protected:
 
     /**< Print the outer spaces beside void cells and material cells */
     void PrintOutSpace(Standard_OStream& theStream);

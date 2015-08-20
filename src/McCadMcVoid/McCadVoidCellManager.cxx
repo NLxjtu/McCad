@@ -1,6 +1,7 @@
 #include "McCadVoidCellManager.hxx"
 #include "McCadMcnpWriter.hxx"
 #include "McCadTripoliWriter.hxx"
+#include "McCadGDMLWriter.hxx"
 
 #include <assert.h>
 #include <TCollection_AsciiString.hxx>
@@ -78,6 +79,12 @@ void McCadVoidCellManager::Process()
     else if (m_Convertor == "MCNP")
     {
         pWriter = new McCadMcnpWriter();
+    }
+
+    //qiu add GDML option
+    else if (m_Convertor == "GDML")
+    {
+        pWriter = new McCadGDMLWriter();
     }
 
     if (pWriter != NULL)

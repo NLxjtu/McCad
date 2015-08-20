@@ -32,7 +32,6 @@
 #include "../McCadTool/McCadConvertConfig.hxx"
 #include "../McCadIOTools/McCadInputModelData.hxx"
 #include "../McCadTool/MaterialManager.hxx"
-#include "../McCadDecompose/McCadDecompose.hxx"
 
 using namespace std;
 
@@ -169,38 +168,27 @@ int main(int argc, char *argv[]) {
 
         // Convertor
         else if(inParameter.IsEqual("-d") || inParameter.IsEqual("--decompose")) {
-//            cout << "\nMcCad_Decomposer\n====================\n\n";
-//            // read file
-//            Handle_TopTools_HSequenceOfShape inputShapes = readFile( inName );
+            cout << "\nMcCad_Decomposer\n====================\n\n";
+            // read file
+            Handle_TopTools_HSequenceOfShape inputShapes = readFile( inName );
 
-//            // decompose geometry
-//            McCadConvertTools_Convertor convertor(inputShapes);
-//            convertor.Convert();
-//            if (argc == 4 && !outputName.IsEmpty())
-//                convertor.SetFileName(outputName);
+            // decompose geometry
+            McCadConvertTools_Convertor convertor(inputShapes);
+            convertor.Convert();
+            if (argc == 4 && !outputName.IsEmpty())
+                convertor.SetFileName(outputName);
 
-//            if(!convertor.IsConverted()){
-//                cout << "Conversion failed!!!\n";
-//                return -1;// Lei Lu 20150501
-
-            if (!McCadConvertConfig::ReadPrmt(config_file))
-            {
-                return 0;
+            if(!convertor.IsConverted()){
+                cout << "Conversion failed!!!\n";
+                return -1;
             }
 
-            McCadInputModelData input_model;
-            cout<<inName<<endl;
-            if (!input_model.LoadSTEPModel(inName))
-            {
-                cout << "#Main Function: Read geometry data error! Please check the input file name!\n\n";
-                return 0;
-            }
-
-                McCadDecompose * pDecompose = new McCadDecompose();
-                Handle(TopTools_HSequenceOfShape) hInputShape = input_model.GetModelData();
-
-                pDecompose->InputData(hInputShape );
-                pDecompose->GenerateMesh();
+            // export decomposed geometry to stp file
+            TCollection_AsciiString exportName("converted");
+            exportName += inName;
+            inName = exportName.Split(exportName.SearchFromEnd("."));
+            exportName += "stp";
+            writeFile( exportName, convertor.GetConvertedModel());
             }
 
             // export decomposed geometry to stp file
@@ -235,7 +223,8 @@ int main(int argc, char *argv[]) {
 
         // Void Generator
         else if(inParameter.IsEqual("-m") || inParameter.IsEqual("--mcnp") ||
-                inParameter.IsEqual("-t") || inParameter.IsEqual("--tripoli"))
+                inParameter.IsEqual("-t") || inParameter.IsEqual("--tripoli")||
+                inParameter.IsEqual("-g") || inParameter.IsEqual("--gdml"))
         {
             // read parameter file
             if (!McCadConvertConfig::ReadPrmt(config_file))
@@ -272,6 +261,13 @@ int main(int argc, char *argv[]) {
                 pVoidCellManager->SetConvetor("MCNP");
                 outName += "_MCNP.txt";
             }
+            //qiu add to generate GDML input
+            else if (inParameter.IsEqual("-g") || inParameter.IsEqual("--gdml"))
+            {
+                pVoidCellManager->SetConvetor("GDML");
+                outName += ".gdml";
+            }
+
 
             pVoidCellManager->SetOutFileName(outName);
             pVoidCellManager->Process();                    // Process the conversion work

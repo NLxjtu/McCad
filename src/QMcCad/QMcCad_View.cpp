@@ -306,7 +306,7 @@ void QMcCad_View::mouseReleaseEvent(QMouseEvent* e)
 		}
 	}
 
-    //Execute();
+	Execute();
 
 	mySelectionMode = Standard_False;
 	myRectangleMode = Standard_False;
