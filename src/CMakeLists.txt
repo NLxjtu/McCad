@@ -244,23 +244,19 @@ ADD_LIBRARY (TKMcCadMcVoid 	${McSrc}/McCadMcVoid/McCadMcVoid_Generator.cxx
                                 ${McSrc}/McCadMcVoid/McCadTripoliCell.cxx
                                 ${McSrc}/McCadMcVoid/IMcCadWriter.cxx
                                 ${McSrc}/McCadMcVoid/McCadMcnpWriter.cxx
+                                ${McSrc}/McCadMcVoid/McCadGDMLWriter.cxx
                                 ${McSrc}/McCadMcVoid/McCadTripoliWriter.cxx
                                 ${McSrc}/McCadMcVoid/McCadVoidGenerator.cxx)
-
-ADD_LIBRARY (TKMcCadDecompose	${McSrc}/McCadDecompose/McCadDecompose.cxx
-                                ${McSrc}/McCadDecompose/McCadTriangle.cxx
-                                ${McSrc}/McCadDecompose/McCadBndSurface.cxx
-                                ${McSrc}/McCadDecompose/McCadBndSurfCylinder.cxx)
 
 ADD_LIBRARY (TKMcCadTool	${McSrc}/McCadTool/McCadTool_Task.cxx
                                 ${McSrc}/McCadTool/McCadTool_TaskMaster.cxx
                                 ${McSrc}/McCadTool/McCadTool_TaskHistory.cxx
                                 ${McSrc}/McCadTool/McCadTool_ListOfTask_0.cxx
                                 ${McSrc}/McCadTool/McCadTool_ListNodeOfListOfTask_0.cxx
-                                ${McSrc}/McCadTool/McCadTool_ListIteratorOfListOfTask_0.cxx
-                                ${McSrc}/McCadTool/MaterialManager.cxx
+                                ${McSrc}/McCadTool/McCadTool_ListIteratorOfListOfTask_0.cxx                               
                                 ${McSrc}/McCadTool/Material.cxx
                                 ${McSrc}/McCadTool/MaterialGroup.cxx
+                                ${McSrc}/McCadTool/MaterialManager.cxx
                                 ${McSrc}/McCadTool/McCadGeomTool.cxx
                                 ${McSrc}/McCadTool/McCadMathTool.cxx
                                 ${McSrc}/McCadTool/McCadGeneTool.cxx
@@ -652,22 +648,6 @@ target_link_libraries (TKMcCadMcVoid	TKernel
                                         TKShHealing
                                         TKMesh)
 
-target_link_libraries (TKMcCadDecompose	TKernel
-                                        TKBO
-                                        TKG3d
-                                        TKTopAlgo
-                                        TKMath
-                                        TKBRep
-                                        TKG2d
-                                        TKBool
-                                        TKPrim
-                                        TKGeomAlgo
-                                        TKMcCadGTOOL
-                                        TKMcCadTool
-                                        TKGeomBase
-                                        TKShHealing
-                                        TKMesh)
-
 target_link_libraries (TKMcCadViewTool	TKMath
                                         TKernel
                                         TKMcCadCom
@@ -693,7 +673,6 @@ target_link_libraries (TKMcCadConvertTools 	TKG2d
                                                 TKMcCadTDS
                                                 TKMcCadCSG
                                                 TKMcCadMcVoid
-                                                TKMcCadDecompose
                                                 TKMcCadMcWrite
                                                 TKMcCadGUI
                                                 TKMcCadDiscDs
@@ -791,7 +770,6 @@ SET (MCCAD_LIBRARIES	TKMcCadAEV
                         TKMcCadIOTools
                         TKMcCadMcRead
                         TKMcCadMcVoid
-                        TKMcCadDecompose
                         TKMcCadMcWrite
                         TKMcCadMDReader
                         TKMcCadMessenger
